@@ -74,5 +74,15 @@ class Product
 		f.close
 	end	
 
+	def search(word)
+		File.open("inventory.txt") do |f|
+		  f.any? do |line|
+		     if line.include?(word)
+		     	puts line
+		     end	
+		  end
+		end					
+	end	
+
 end
 

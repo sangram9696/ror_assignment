@@ -21,7 +21,7 @@ class Shopkeeper
 		when 4    
 			self.edit_product
 		when 5    
-			puts "it was 5" 						
+			self.search_prodcut				
 		else
 		  puts "it was something else"
 		end		
@@ -66,6 +66,13 @@ class Shopkeeper
 		pro.edit(@product_id,@product_name,@price,@stock_item,@company_name)
 		self.list_product
 	end
+
+	def search_prodcut
+		puts "Search product:- "
+		@word=STDIN.gets.chomp		
+		pro= Product.new
+		pro.search(@word)
+	end	
 
 	def list_product
 		pro= Product.new
