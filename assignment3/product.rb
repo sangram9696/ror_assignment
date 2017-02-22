@@ -25,7 +25,7 @@ class Product
 					else
 				File.open("inventory_temp.txt", "a+"){|filetemp| 
 					line_no=(count).to_s	
-					filetemp.puts line_no+"|"+line
+					filetemp.puts line
 				}		
 					end	
 				count=count+1	
@@ -41,6 +41,31 @@ class Product
 			end		
 	end	
 
+	def delete(product_id)
+		count=1;
+		File.open("inventory_temp.txt", "wb") do |input|
+		end	
+
+		File.open("inventory.txt", "r"){|file| 
+			file.each_line do |line|
+					if line[0]!=product_id.to_s
+						File.open("inventory_temp.txt", "a+"){|filetemp| 
+							line_no=(count).to_s	
+							filetemp.puts line
+						}	
+					end	
+				count=count+1	
+			end
+		}
+
+			File.open("inventory_temp.txt", "rb") do |input|
+				File.open("inventory.txt", "wb") do |output|
+					while buff = input.read(4096)
+					output.write(buff)
+					end
+				end
+			end		
+	end	
 	def list
 		f = File.open("inventory.txt", "r")
 		f.each_line do |line|

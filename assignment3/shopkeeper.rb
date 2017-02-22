@@ -15,7 +15,7 @@ class Shopkeeper
 		when 1   
 		  self.add_product
 		when 2    
-			puts "it was 2" 
+			self.delete_product
 		when 3   
 		  	self.list_product
 		when 4    
@@ -38,6 +38,16 @@ class Shopkeeper
 		@company_name=gets.chomp
 		pro= Product.new
 		pro.add(@product_name,@price,@stock_item,@company_name)
+		self.list_product
+	end	
+
+	def delete_product
+		self.list_product
+		puts "Enter product id to delete:- "
+		@product_id=STDIN.gets.chomp
+		pro= Product.new
+		pro.delete(@product_id)
+		self.list_product
 	end	
 
 	def edit_product
@@ -54,6 +64,7 @@ class Shopkeeper
 		@company_name=STDIN.gets.chomp		
 		pro= Product.new	
 		pro.edit(@product_id,@product_name,@price,@stock_item,@company_name)
+		self.list_product
 	end
 
 	def list_product
