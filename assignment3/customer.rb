@@ -1,3 +1,5 @@
+require_relative 'order'
+require_relative 'fileoperation'
 class Customer
 	def show_customer_options
 		puts "1.List Product"
@@ -20,9 +22,13 @@ class Customer
 		end		
 	end
 
+	def list_product
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.list
+	end		
+
 	def buy_prodcut
 		self.list_product
-		pro= Product.new
 		puts "Enter product id to buy product:- "
 		@product_id=STDIN.gets.chomp
 		
@@ -35,17 +41,13 @@ class Customer
 		puts "Enter your card cvv:- "
 		@cvv=STDIN.gets.chomp	
 
-		pro.buy(@product_id,@user_name,@card_number,@cvv)	
+		order= Order.new
+		order.buy(@product_id,@user_name,@card_number,@cvv)	
 		self.list_product
 	end	
-	def search_prodcut
-		puts "Search product:- "
-		@word=STDIN.gets.chomp		
-		pro= Product.new
-		pro.search(@word)
+
+	def search_prodcut(word)
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.search(word)
 	end	
-	def list_product
-		pro= Product.new
-		pro.list
-	end
 end

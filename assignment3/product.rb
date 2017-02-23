@@ -9,83 +9,20 @@ class Product
 		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
 		file_io.edit(hash_data)
 	end	
-	def edit1(product_id,product_name,price,stock_item,company_name)
-		data=product_name+"|"+price+"|"+stock_item+"|"+company_name
-		puts "In edit function and product id is "+product_id
-		count=1;
-		
-		File.open("inventory_temp.txt", "wb") do |input|
-		end	
-
-		File.open("inventory.txt", "r"){|file| 
-			file.each_line do |line|
-				result = line.split("|").map(&:strip)
-					if result[0]==product_id.to_s
-				File.open("inventory_temp.txt", "a+"){|filetemp| 
-					line_no=(count).to_s	
-					filetemp.puts line_no+"|"+data
-				}	
-					else
-				File.open("inventory_temp.txt", "a+"){|filetemp| 
-					line_no=(count).to_s	
-					filetemp.puts line
-				}		
-					end	
-				count=count+1	
-			end
-		}
-
-			File.open("inventory_temp.txt", "rb") do |input|
-				File.open("inventory.txt", "wb") do |output|
-					while buff = input.read(4096)
-					output.write(buff)
-					end
-				end
-			end		
-	end	
 
 	def delete(product_id)
-		count=1;
-		File.open("inventory_temp.txt", "wb") do |input|
-		end	
-
-		File.open("inventory.txt", "r"){|file| 
-			file.each_line do |line|
-					result = line.split("|").map(&:strip)
-					if result[0]!=product_id.to_s
-						File.open("inventory_temp.txt", "a+"){|filetemp| 
-							line_no=(count).to_s	
-							filetemp.puts line
-						}	
-					end	
-				count=count+1	
-			end
-		}
-
-			File.open("inventory_temp.txt", "rb") do |input|
-				File.open("inventory.txt", "wb") do |output|
-					while buff = input.read(4096)
-					output.write(buff)
-					end
-				end
-			end		
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.delete(product_id)
 	end	
+
 	def list
-		f = File.open("inventory.txt", "r")
-		f.each_line do |line|
-			puts line
-		end
-		f.close
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.list
 	end	
 
 	def search(word)
-		File.open("inventory.txt") do |f|
-		  f.any? do |line|
-		     if line.include?(word)
-		     	puts line
-		     end	
-		  end
-		end					
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.search(word)
 	end	
 
 	def add_user_order_info(product_id,user_name,card_number,cvv)
