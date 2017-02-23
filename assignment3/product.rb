@@ -1,13 +1,15 @@
+require_relative 'fileoperation'
 class Product
-	def add(product_name,price,stock_item,company_name)
-		data=product_name+"|"+price+"|"+stock_item+"|"+company_name
-		File.open("inventory.txt", "a+"){|file| 
-			line_no=(file.count+1).to_s	
-			file.puts line_no+"|"+data
-		}
+	def add(hash_data)
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.add(hash_data)
 	end	
 
-	def edit(product_id,product_name,price,stock_item,company_name)
+	def edit(hash_data)
+		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
+		file_io.edit(hash_data)
+	end	
+	def edit1(product_id,product_name,price,stock_item,company_name)
 		data=product_name+"|"+price+"|"+stock_item+"|"+company_name
 		puts "In edit function and product id is "+product_id
 		count=1;

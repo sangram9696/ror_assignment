@@ -1,4 +1,5 @@
 require_relative 'product'
+require_relative 'config'
 class Shopkeeper
 	def show_shopkeeper_options
 		puts "1.Add Product"
@@ -29,15 +30,18 @@ class Shopkeeper
 
 	def add_product
 		puts "Enter product name:- "
-		@product_name=gets.chomp
+		product_name=gets.chomp
 		puts "Enter product price:- "
-		@price=gets.chomp
+		price=gets.chomp
 		puts "Enter stock item:- "
-		@stock_item=gets.chomp
+		stock_item=gets.chomp
 		puts "Enter company name:- "
-		@company_name=gets.chomp
-		pro= Product.new
-		pro.add(@product_name,@price,@stock_item,@company_name)
+		company_name=gets.chomp
+		hash_data={"product_name"=>product_name,"price"=>price,
+					"stock_item"=>stock_item,"company_name"=>company_name
+				  }
+		pro= Product.new		  
+		pro.add(hash_data)
 		self.list_product
 	end	
 
@@ -53,17 +57,21 @@ class Shopkeeper
 	def edit_product
 		self.list_product
 		puts "Enter product id to update:- "
-		@product_id=STDIN.gets.chomp
+		product_id=STDIN.gets.chomp
 		puts "Enter product_name to update:- "
-		@product_name=STDIN.gets.chomp
+		product_name=STDIN.gets.chomp
 		puts "Enter price to update:- "
-		@price=STDIN.gets.chomp
+		price=STDIN.gets.chomp
 		puts "Enter stock_itemto update:- "
-		@stock_item=STDIN.gets.chomp
+		stock_item=STDIN.gets.chomp
 		puts "Enter company_name to update:- "
-		@company_name=STDIN.gets.chomp		
+		company_name=STDIN.gets.chomp		
+
+		hash_data={"product_id"=>product_id,"product_name"=>product_name,"price"=>price,
+					"stock_item"=>stock_item,"company_name"=>company_name
+				  }
 		pro= Product.new	
-		pro.edit(@product_id,@product_name,@price,@stock_item,@company_name)
+		pro.edit(hash_data)
 		self.list_product
 	end
 

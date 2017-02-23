@@ -1,0 +1,1 @@
+SHOP_KEEPER_FILE_NAME="inventory.txt"
