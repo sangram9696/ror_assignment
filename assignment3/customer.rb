@@ -12,9 +12,9 @@ class Customer
 		option=gets.chomp.to_i
 		case option
 		when 1   
-		  self.list_prodcut
+		  self.list_product
 		when 2    
-		 self.search_prodcut
+		 self.search_product
 		when 3   
 		 self.buy_prodcut			
 		else
@@ -46,7 +46,7 @@ class Customer
 		self.list_product
 	end	
 
-	def search_prodcut(word)
+	def search_product(word)
 		file_io=FileOperation.new(SHOP_KEEPER_FILE_NAME)
 		file_io.search(word)
 	end	
