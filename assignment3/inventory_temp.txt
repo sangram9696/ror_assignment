@@ -1,2 +1,2 @@
 1|asdads|2|2|asd
-2|product2|52|49|dd
+2|product2|52|48|dd
