@@ -42,9 +42,7 @@ class FileOperations
 					file.each_line do |line|
 						result = line.split(SEPERATOR).map(&:strip)
 						if result.first!=product_id.to_s
-							File.open(TEMP_FILE, "a+"){|filetemp| 
-								filetemp.puts line
-							}	
+							write_data_to_file(TEMP_FILE,line)	
 						end		
 					end
 				}
