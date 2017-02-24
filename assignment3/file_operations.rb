@@ -1,4 +1,4 @@
-class file_operations
+class FileOperations
 		def initialize(file_name)
 				@file_name = file_name
 		end 

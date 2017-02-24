@@ -5,24 +5,24 @@ class Inventory
   
   def manage_inventory_data(product_id)
     count=1;
-    File.open("inventory_temp.txt", "wb") do |input|
+    File.open(TEMP_FILE, "wb") do |input|
     end 
     File.open(@file_name, "r"){|file| 
       file.each_line do |line|
-        result = line.split("|").map(&:strip)
+        result = line.split(SEPERATOR).map(&:strip)
         if result[0]==product_id
           if result[3]=="0"
             puts "Product not avliable"
           else
-            File.open("inventory_temp.txt", "a+"){|filetemp| 
+            File.open(TEMP_FILE, "a+"){|filetemp| 
               line_no=(count).to_s
               stock=((result[3].to_i)-1).to_s
-              data=result[0]+"|"+result[1]+"|"+result[2]+"|"+stock+"|"+result[4]  
+              data=result[0]+SEPERATOR+result[1]+SEPERATOR+result[2]+SEPERATOR+stock+SEPERATOR+result[4]  
               filetemp.puts(data)
             } 
            end   
           else
-        File.open("inventory_temp.txt", "a+"){|filetemp| 
+        File.open(TEMP_FILE, "a+"){|filetemp| 
           line_no=(count).to_s  
           filetemp.puts line
         }   
@@ -30,9 +30,9 @@ class Inventory
         count=count+1 
       end
     }
-    File.open("inventory_temp.txt", "rb") do |input|
+    File.open(TEMP_FILE, "rb") do |input|
       File.open(@file_name, "wb") do |output|
-        while buff = input.read(4096)
+        while buff = input.read(FILE_BUFFER_SIZE)
         output.write(buff)
         end
       end

@@ -1,2 +1,5 @@
 SHOP_KEEPER_FILE_NAME="inventory.txt"
+TEMP_FILE="temp.txt"
+SEPERATOR="|"
 SHOP_ORDER_FILE_NAME="order_info.txt"
+FILE_BUFFER_SIZE=4096
