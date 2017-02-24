@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'user_type'
+inituser = UserType.new
+inituser.get_user_type
