@@ -1,4 +1,6 @@
-1|asdasd|21|10|dads
+1|ff|22|22|fff
 2|kkk|2|2|kkk
 3|fff|21|21|zfsfsd
 4|lllllllllllllll|7777777777|55555555|dddddddddd
+5|asd|asd|asd|asd
+6|kiwi|85|5|fruitizm

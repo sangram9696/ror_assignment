@@ -127,7 +127,7 @@ class FileOperations
   private
 
   def temp_file_data_add_for_edit(hash_data)
-      product_id=hash_data['product_id']
+      product_id=hash_data[:product_id]
       File.open(@file_name, "r"){|file|
         file.each_line do |line|
           result = line.split(SEPERATOR).map(&:strip)
