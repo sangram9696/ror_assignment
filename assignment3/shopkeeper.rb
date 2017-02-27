@@ -17,7 +17,7 @@ class Shopkeeper
 		when 2
 				delete_product
 		when 3
-		  	list_product
+		  	Adapter::IO.new.list_product
 		when 4
 				edit_product
 		when 5

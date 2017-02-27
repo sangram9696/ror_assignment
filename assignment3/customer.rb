@@ -1,3 +1,4 @@
+require_relative 'product'
 require_relative 'order'
 require_relative 'file_operations'
 class Customer
@@ -12,7 +13,7 @@ class Customer
     option=gets.chomp.to_i
     case option
     when 1
-      list_product
+      Adapter::IO.new.list_product
     when 2
       search_product
     when 3
@@ -22,13 +23,8 @@ class Customer
     end
   end
 
-  def list_product
-    file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-    file_io.list
-  end
-
   def buy_prodcut
-    list_product
+    Adapter::IO.new.list_product
     product_data_hash={}
     GET_BUY_PRODUCTS_DATA.each do |key, value|
         puts value
@@ -36,7 +32,7 @@ class Customer
     end
     order= Order.new(product_data_hash)
     order.buy_product
-    list_product
+    Adapter::IO.new.list_product
   end
 
   def search_product
