@@ -1,5 +1,6 @@
 require_relative 'product'
 require_relative 'config'
+require_relative 'adapter'
 class Shopkeeper
 	def show_shopkeeper_options
 		PRODUCT_OPERATION_OPTION.each do |key, value|
@@ -34,20 +35,20 @@ class Shopkeeper
 		end
 		pro= Product.new(product_data_hash)
 		pro.add
-		list_product
+		Adapter::IO.new.list_product
 	end
 
 	def delete_product
-		list_product
+		Adapter::IO.new.list_product
 		puts "Enter product id to delete:- "
 		product_data_hash={:product_id=>STDIN.gets.chomp}
 		pro= Product.new(product_data_hash)
 		pro.delete
-		list_product
+		Adapter::IO.new.list_product
 	end
 
 	def edit_product
-		list_product
+		Adapter::IO.new.list_product
 		product_data_hash={}
 		GET_PRODUCTS_DATA_UPDATE.each do |key, value|
 		    puts value
@@ -55,7 +56,7 @@ class Shopkeeper
 		end
 		pro= Product.new(product_data_hash)
 		pro.edit
-		list_product
+		Adapter::IO.new.list_product
 	end
 
 	def search_prodcut
@@ -66,8 +67,7 @@ class Shopkeeper
 	end
 
 	def list_product
-		file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-		file_io.list
+		Adapter::IO.new.list_product
 	end
 
 end

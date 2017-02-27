@@ -1,4 +1,4 @@
-require_relative 'file_operations'
+require_relative 'adapter'
 class Product
   def initialize args
     args.each do |k,v|
@@ -7,23 +7,19 @@ class Product
   end
 
   def add
-    file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-    file_io.add(to_hash)
+    Adapter::IO.new.add(to_hash)
   end
 
   def edit
-    file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-    file_io.edit(to_hash)
+    Adapter::IO.new.edit(to_hash)
   end
 
   def delete
-    file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-    file_io.delete(to_hash[:product_id])
+    Adapter::IO.new.delete(product_id)
   end
 
   def search(word)
-    file_io=FileOperations.new(SHOP_KEEPER_FILE_NAME)
-    file_io.search(word)
+    Adapter::IO.new.search(to_hash[:product_id])
   end
 
   def to_hash
